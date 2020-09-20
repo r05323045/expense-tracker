@@ -3,31 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "seed": "node models/seeds/categorySeeder.js && node models/seeds/recordSeeder.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
     "jquery": "^3.5.1",
-    "method-override": "^3.0.0",
-    "mongoose": "^5.10.6",
     "jsdom": "^16.4.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.10.6"
+  },
+  "devDependencies": {
     "standard": "^14.3.4"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node models/seeds/recordSeeder.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/r05323045/expense-tracker.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/r05323045/expense-tracker/issues"
-  },
-  "homepage": "https://github.com/r05323045/expense-tracker#readme"
+  }
 }
