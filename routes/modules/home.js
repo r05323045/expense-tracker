@@ -6,6 +6,7 @@ const Record = require('../../models/recordAgain')
 router.get('/', (req, res) => {
   Record.find()
     .lean()
+    .sort({ date: -1 })
     .then(records => {
       const totalAmount = records.reduce((acc, cur) => acc + cur.amount, 0)
       records.forEach(el => {
@@ -50,6 +51,7 @@ router.get('/category', (req, res) => {
   }
   return Record.find({ category: selectCategory })
     .lean()
+    .sort({ date: -1 })
     .then(records => {
       const totalAmount = records.reduce((acc, cur) => acc + cur.amount, 0)
       records.forEach(el => {

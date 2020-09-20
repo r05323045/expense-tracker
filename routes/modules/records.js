@@ -16,7 +16,6 @@ router.get('/:id/edit', (req, res) => {
     .then((record) => {
       record.date = record.date.toLocaleDateString()
       dateString = '2020-09-20' /* 無法理解為何上面的 record.date 同樣是 string 卻不能顯示在 edit.hbs:26 的 input value 上 */
-      console.log(record.date === dateString)
       res.render('edit', { record, categoryList, dateString })
     })
     .catch(error => console.log(error))
@@ -36,10 +35,8 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   const id = req.params.id
   const { name, date, category, amount } = req.body
-  console.log(req.body)
   return Record.findById(id)
     .then(record => {
-      console.log(req.body)
       record.name = name
       record.date = date
       record.category = category
