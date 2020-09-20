@@ -1,7 +1,7 @@
 // 引用 Express 與 Express 路由器
 const express = require('express')
 const router = express.Router()
-const Record = require('../../models/record')
+const Record = require('../../models/recordAgain')
 // 設定首頁路由
 router.get('/', (req, res) => {
   Record.find()
