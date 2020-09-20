@@ -1,0 +1,62 @@
+<form action="/records/{{ record._id }}?_method=PUT" method="POST">
+  <div class="container my-4 new">
+    <div class="row">
+      <div class="col-12 col-md-10 col-lg-8 mx-auto">
+        <div class="row my-3">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+            <h5 class="new-title text-center">請修改你的支出</h5>
+          </div>
+        </div>
+        <div class="note row">* 必填欄位</div>
+        <div class="form-group row mb-5 d-flex">
+          <label class="col-sm-2 col-form-label text-center">
+            名稱*：
+          </label>
+          <div class="col-sm-10">
+            <input class="w-100 form-control" type="text" name="name" value="{{ record.name }}">
+          </div>
+        </div>
+
+        <div class="form-group row mb-5 d-flex">
+          <div class="col-sm-2 col-form-label text-center">
+            日期*：
+          </div>
+          <div class="col-sm-10">
+            <input class="w-100 form-control" type="date" name="date">
+          </div>
+        </div>
+
+        <div class="form-group row mb-5 d-flex">
+          <div class="col-sm-2 col-form-label text-center">
+            類別*：
+          </div>
+          <div class="col-sm-10">
+            <select name="category" class="form-control" value="{{ record.category }}">
+              {{#each categoryList}}
+                <option>{{this}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row mb-5 d-flex">
+          <div class="col-sm-2 col-form-label text-center">
+            金額*：
+          </div>
+          <div class="col-sm-10">
+            <input class="w-100 form-control" type="text" name="amount" value="{{ record.amount }}">
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-10">
+            <button type="submit" class="col-12 btn btn-outline-secondary create-btn">送出</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

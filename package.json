@@ -13,8 +13,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.6"
   },

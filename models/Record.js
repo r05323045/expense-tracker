@@ -12,8 +12,7 @@ const recordSchema = new Schema({
   },
   category: {
     type: String,
-    required: true,
-    enum: ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他']
+    required: true
   },
   amount: {
     type: Number,

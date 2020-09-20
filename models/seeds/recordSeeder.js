@@ -1,5 +1,5 @@
 const recordList = require('../../record.json')
-const Record = require('../Record')
+const Record = require('../record')
 const db = require('../../config/mongoose')
 
 db.once('open', () => {

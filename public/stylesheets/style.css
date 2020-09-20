@@ -1,0 +1,68 @@
+.navbar .navbar-brand {
+  color: #000000 !important;
+  font-weight: 500;
+}
+
+.container .sort-by form select {
+  font-size: 0.8rem;
+}
+
+.container .total-amount-wrapper {
+  font-weight: 500;
+}
+
+.container .total-amount-wrapper .total-amount {
+  font-size: 5rem;
+  font-weight: 500;
+  color: #ff6600;
+}
+
+.container .table .icon-wrapper {
+  color:#9BD5D1;
+  font-size: 2rem;
+}
+
+.container .table .name {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.container .table .date {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.container .table .amount-wrapper {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.container .table .button-wrapper a {
+  color: #919191 !important;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.container .create {
+  border-radius: 5px !important;
+  border: solid 1px #000000;
+  background: #ff6600 !important;
+}
+
+.new .new-title {
+  font-weight: 500;
+}
+
+.new .note {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.new .create-btn {
+  font-size: 1rem;
+  font-weight: 400;
+}
+

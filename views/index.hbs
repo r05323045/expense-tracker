@@ -1,1 +1,94 @@
-<h2>Hello world! 這是 index</h2>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-7 col-md-8 p-0">
+          <div class="sort-by">
+            <form action="/sort" class="w-100 form-group">
+              <select class="form-control" name="sortBy" onchange="this.form.submit()">
+                <option value="dsc" {{dscSelect}}>日期由新到舊</option>
+                <option value="asc" {{ascSelect}}>日期由舊到新</option>
+                <option value="category" {{categorySelect}}>按照類別排序</option>
+                <option value="amountAsc" {{amountAscSelect}}>金額由小到大</option>
+                <option value="amountDsc" {{amountDscSelect}}>金額由大到小</option>
+              </select>
+            </form>
+          </div>
+          <div class="total-amount-wrapper mt-5">
+            總金額:
+            <div class="total-amount text-right">
+              {{ totalAmount }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-borderless">
+        <tbody>
+        {{#each records}}
+          <tr class="row p-0">
+            <td class="col-1 bg-white"></td>
+            <td class="col-7 col-md-8">
+              <div class="row">
+                <div class="col-3 col-md-2 d-flex justify-content-center align-items-center">
+                  <div class="icon-wrapper">
+                    {{{this.categoryHTML}}}
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="row name">{{this.name}}</div>
+                  <div class="row date">{{this.date}}</div>
+                </div>
+                <div class="col-3 col-md-4 d-flex justify-content-center align-items-center">
+                  <div class="amount-wrapper">
+                    {{this.amount}}
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="col-4 col-md-3 bg-white d-flex align-items-center">
+              <div class="row w-100">
+                <div class="button-wrapper col-6 d-flex justify-content-center align-items-center p-0">
+                  <a href="/records/{{this._id}}/edit">修改</a>
+                </div>
+                <div class="button-wrapper col-6 d-flex justify-content-center align-items-center p-0">
+                  <a data-toggle="modal" data-target="#deletModal_{{this._id}}">刪除</a>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <div id="deletModal_{{this._id}}" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">確認刪除</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>確定要刪除<span class="mx-1 font-weight-bold">{{this.name}}</span>嗎?<span class="text-secondary">(刪除後將無法復原)</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                  <form action="./records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">刪除</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{/each}}
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-7 col-md-8 p-0">
+          <div class="text-center mt-5 col-6 mx-auto">
+            <a class="w-100 btn btn-primary create" href="/records/new">新增支出</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
