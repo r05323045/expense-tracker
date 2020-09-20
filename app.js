@@ -1,13 +1,31 @@
-// 載入 express 並建構應用程式伺服器
+// app.js
+// require packages used in the project
 const express = require('express')
+const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
+// 引用路由器
+const routes = require('./routes')
+require('./config/mongoose')
+
 const app = express()
+const PORT = process.env.PORT || 3000
 
-// 設定首頁路由
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+// setting template engine
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', 'hbs')
 
-// 設定 port 3000
-app.listen(3000, () => {
-  console.log('App is running on http://localhost:3000')
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(methodOverride('_method'))
+
+app.use(routes)
+
+// setting static files
+app.use(express.static('public'))
+
+// start and listen on the Express server
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`)
 })
