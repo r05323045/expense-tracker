@@ -6,7 +6,6 @@ const Record = require('../../models/recordAgain')
 router.get('/', (req, res) => {
   Record.find()
     .lean()
-    .sort({ date: -1 })
     .then(records => {
       const totalAmount = records.reduce((acc, cur) => acc + cur.amount, 0)
       records.forEach(el => {
@@ -33,28 +32,24 @@ router.get('/', (req, res) => {
     })
     .catch(error => console.error(error))
 })
-router.get('/sort', (req, res) => {
-  const sortBy = req.query.sortBy
-  let order = { date: -1 }
-  let ascSelect, dscSelect, categorySelect, amountAscSelect, amountDscSelect
-  if (sortBy === 'asc') {
-    order = { date: 1 }
-    ascSelect = 'selected'
-  } else if (sortBy === 'category') {
-    order = { category: 1 }
-    categorySelect = 'selected'
-  } else if (sortBy === 'amountAsc') {
-    order = { amount: 1 }
-    amountAscSelect = 'selected'
-  } else if (sortBy === 'amountDsc') {
-    order = { amount: -1 }
-    amountDscSelect = 'selected'
+router.get('/category', (req, res) => {
+  const selectCategory = req.query.selectCategory
+  let homeSelect, trafficSelect, leisureSelect, foodSelect, otherSelect
+  if (selectCategory === '家居物業') {
+    homeSelect = 'selected'
+  } else if (selectCategory === '交通出行') {
+    trafficSelect = 'selected'
+  } else if (selectCategory === '休閒娛樂') {
+    leisureSelect = 'selected'
+  } else if (selectCategory === '餐飲食品') {
+    foodSelect = 'selected'
+  } else if (selectCategory === '其他') {
+    otherSelect = 'selected'
   } else {
-    dscSelect = 'selected'
+    res.redirect('/')
   }
-  return Record.find()
+  return Record.find({ category: selectCategory })
     .lean()
-    .sort(order)
     .then(records => {
       const totalAmount = records.reduce((acc, cur) => acc + cur.amount, 0)
       records.forEach(el => {
@@ -77,7 +72,7 @@ router.get('/sort', (req, res) => {
         }
         el.date = el.date.toLocaleDateString()
       })
-      res.render('index', { records, totalAmount, ascSelect, dscSelect, categorySelect, amountAscSelect, amountDscSelect })
+      res.render('index', { records, totalAmount, homeSelect, trafficSelect, leisureSelect, foodSelect, otherSelect })
     })
     .catch(error => console.log(error))
 })
