@@ -10,11 +10,13 @@ router.get('/new', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
   const categoryList = ['家居物業', '交通出行', '休閒娛樂', '餐飲食品']
+  let dateString
   return Record.findById(id)
     .lean()
     .then((record) => {
       record.date = record.date.toLocaleDateString()
-      res.render('edit', { record, categoryList })
+      dateString = '2020-09-20'
+      res.render('edit', { record, categoryList, dateString })
     })
     .catch(error => console.log(error))
 })
