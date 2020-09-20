@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Record = require('../../models/record')
+const Record = require('../../models/recordAgain')
 
 router.get('/new', (req, res) => {
   const categoryList = ['家居物業', '交通出行', '休閒娛樂', '餐飲食品']
