@@ -2,6 +2,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/recordModel')
+const Category = require('../../models/categoryModel')
 // 設定首頁路由
 router.get('/', (req, res) => {
   Record.find()
@@ -29,24 +30,21 @@ router.get('/', (req, res) => {
         }
         el.date = el.date.toLocaleDateString()
       })
-      res.render('index', { records, totalAmount })
+      Category.find()
+        .lean()
+        .sort({ _id: 1 })
+        .then(categories => {
+          categories.forEach(category => {
+            category.selected = false
+          })
+          res.render('index', { records, totalAmount, categories })
+        })
     })
     .catch(error => console.error(error))
 })
 router.get('/category', (req, res) => {
   const selectCategory = req.query.selectCategory
-  let homeSelect, trafficSelect, leisureSelect, foodSelect, otherSelect
-  if (selectCategory === '家居物業') {
-    homeSelect = 'selected'
-  } else if (selectCategory === '交通出行') {
-    trafficSelect = 'selected'
-  } else if (selectCategory === '休閒娛樂') {
-    leisureSelect = 'selected'
-  } else if (selectCategory === '餐飲食品') {
-    foodSelect = 'selected'
-  } else if (selectCategory === '其他') {
-    otherSelect = 'selected'
-  } else {
+  if (selectCategory === '類別') {
     return res.redirect('/')
   }
   return Record.find({ category: selectCategory })
@@ -74,7 +72,19 @@ router.get('/category', (req, res) => {
         }
         el.date = el.date.toLocaleDateString()
       })
-      res.render('index', { records, totalAmount, homeSelect, trafficSelect, leisureSelect, foodSelect, otherSelect })
+      Category.find()
+        .lean()
+        .sort({ _id: 1 })
+        .then(categories => {
+          categories.forEach(category => {
+            if (selectCategory === category.name) {
+              category.selected = true
+            } else {
+              category.selected = false
+            }
+          })
+          res.render('index', { records, totalAmount, categories })
+        })
     })
     .catch(error => console.log(error))
 })

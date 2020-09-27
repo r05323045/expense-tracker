@@ -1,22 +1,37 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/recordModel')
+const Category = require('../../models/categoryModel')
 
 router.get('/new', (req, res) => {
-  const categoryList = ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他']
-  return res.render('new', { categoryList })
+  Category.find()
+    .lean()
+    .sort({ _id: 1 })
+    .then(categories => res.render('new', { categories }))
 })
 
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id
-  const categoryList = ['家居物業', '交通出行', '休閒娛樂', '餐飲食品', '其他']
-  let dateString
   return Record.findById(id)
     .lean()
     .then((record) => {
-      record.date = record.date.toLocaleDateString()
-      dateString = '2020-09-20' /* 無法理解為何上面的 record.date 同樣是 string 卻不能顯示在 edit.hbs:26 的 input value 上 */
-      res.render('edit', { record, categoryList, dateString })
+      const date = String(record.date.getDate()).padStart(2, '0')
+      const month = String(record.date.getMonth() + 1).padStart(2, '0')
+      const year = String(record.date.getFullYear())
+      const dateString = `${year}-${month}-${date}`
+      Category.find()
+        .lean()
+        .sort({ _id: 1 })
+        .then(categories => {
+          categories.forEach(category => {
+            if (record.category === category.name) {
+              category.selected = true
+            } else {
+              category.selected = false
+            }
+          })
+          res.render('edit', { record, dateString, categories })
+        })
     })
     .catch(error => console.log(error))
 })
