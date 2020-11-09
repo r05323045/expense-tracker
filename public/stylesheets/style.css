@@ -49,6 +49,16 @@
   background: #ff6600 !important;
 }
 
+.btn-facebook {
+  background-color: #4267B2 !important; 
+  color: white !important;
+}
+
+.btn-facebook:hover {
+  background-color: #072d72 !important; 
+  color: white !important;
+}
+
 .new .new-title {
   font-weight: 500;
 }
