@@ -11,8 +11,9 @@ router.get('/new', (req, res) => {
 })
 
 router.get('/:id/edit', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findOne({ _id, userId })
     .lean()
     .then((record) => {
       const date = String(record.date.getDate()).padStart(2, '0')
@@ -37,20 +38,23 @@ router.get('/:id/edit', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  const userId = req.user._id
   return Record.create({
     name: req.body.name,
     date: req.body.date,
     category: req.body.category,
-    amount: req.body.amount
+    amount: req.body.amount,
+    userId
   })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 router.put('/:id', (req, res) => {
-  const id = req.params.id
+  const userId = req.user._id
+  const _id = req.params.id
   const { name, date, category, amount } = req.body
-  return Record.findById(id)
+  return Record.findOne({ _id, userId })
     .then(record => {
       record.name = name
       record.date = date
@@ -63,11 +67,11 @@ router.put('/:id', (req, res) => {
 })
 
 router.delete('/:id', (req, res) => {
-  const id = req.params.id
-  return Record.findById(id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Record.findById({ _id, userId })
     .then(record => record.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
-// 匯出路由模組
 module.exports = router

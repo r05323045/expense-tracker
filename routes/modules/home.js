@@ -1,11 +1,11 @@
-// 引用 Express 與 Express 路由器
 const express = require('express')
 const router = express.Router()
 const Record = require('../../models/recordModel')
 const Category = require('../../models/categoryModel')
-// 設定首頁路由
+
 router.get('/', (req, res) => {
-  Record.find()
+  const userId = req.user._id
+  Record.find({ userId })
     .lean()
     .sort({ date: -1 })
     .then(records => {
@@ -44,10 +44,11 @@ router.get('/', (req, res) => {
 })
 router.get('/category', (req, res) => {
   const selectCategory = req.query.selectCategory
+  const userId = req.user._id
   if (selectCategory === '類別') {
     return res.redirect('/')
   }
-  return Record.find({ category: selectCategory })
+  return Record.find({ category: selectCategory, userId })
     .lean()
     .sort({ date: -1 })
     .then(records => {
@@ -88,5 +89,4 @@ router.get('/category', (req, res) => {
     })
     .catch(error => console.log(error))
 })
-// 匯出路由模組
 module.exports = router
