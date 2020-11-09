@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
