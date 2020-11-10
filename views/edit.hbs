@@ -2,57 +2,37 @@
   <div class="container my-4 new">
     <div class="row">
       <div class="col-12 col-md-10 col-lg-8 mx-auto">
-        <div class="row my-3">
-          <div class="col-sm-2"></div>
-          <div class="col-sm-10">
-            <h5 class="new-title text-center">請修改你的支出</h5>
-          </div>
-        </div>
-        <div class="note row">* 必填欄位</div>
-        <div class="form-group row mb-5 d-flex">
-          <label class="col-sm-2 col-form-label text-center">
-            名稱*：
-          </label>
-          <div class="col-sm-10">
-            <input class="w-100 form-control" type="text" name="name" value="{{ record.name }}" required="required">
-          </div>
+        
+        <div class="new-title text-center my-3 my-md-5">修改支出內容</div>
+
+        <div class="form-group mb-3 mb-md-5">
+          <label for="form-name">名稱</label>
+          <input class="w-100 form-control" placeholder="請輸入名稱" type="text" id="form-name" name="name" value="{{ record.name }}" required="required">
         </div>
 
-        <div class="form-group row mb-5 d-flex">
-          <div class="col-sm-2 col-form-label text-center">
-            日期*：
-          </div>
-          <div class="col-sm-10">
-            <input class="w-100 form-control" type="date" name="date" value="{{ dateString }}" required="required">
-          </div>
+        <div class="form-group mb-3 mb-md-5">
+          <label for="form-date">日期</label>
+          <input class="w-100 form-control" type="date" id="form-date" name="date" value="{{ dateString }}" required="required">
         </div>
 
-        <div class="form-group row mb-5 d-flex">
-          <div class="col-sm-2 col-form-label text-center">
-            類別*：
-          </div>
-          <div class="col-sm-10">
-            <select name="category" class="form-control" required="required">
-              {{#each categories}}
-                <option value="{{this.name}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
-              {{/each}}
-            </select>
-          </div>
+        <div class="form-group mb-3 mb-md-5">
+          <label for="form-category">類別</label>
+          <select name="category" class="form-control" id="form-category" required="required">
+            {{#each categories}}
+              <option value="{{this.name}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+            {{/each}}
+          </select>
         </div>
 
-        <div class="form-group row mb-5 d-flex">
-          <div class="col-sm-2 col-form-label text-center">
-            金額*：
-          </div>
-          <div class="col-sm-10">
-            <input class="w-100 form-control" type="text" name="amount" value="{{ record.amount }}" required="required">
-          </div>
+        <div class="form-group  mb-3 mb-md-5">
+          <label for="form-amount">金額</label>
+          <input class="w-100 form-control" placeholder="請輸入金額" type="number" name="amount" id="form-amount" value="{{ record.amount }}" required="required">
         </div>
 
-        <div class="row my-3">
-          <div class="col-sm-2"></div>
-          <div class="col-sm-10">
-            <button type="submit" class="col-12 btn btn-outline-secondary create-btn">送出</button>
+        <div class="row mb-5">
+        <div class="offset-1 col-10">
+          <div class="text-center mt-5 mx-auto">
+            <button type="submit" class="w-100 btn btn-warning create">送出</button>
           </div>
         </div>
 
