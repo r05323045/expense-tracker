@@ -30,7 +30,7 @@
         {{#each records}}
           <tr class="row">
             <td class="col-1 bg-white"></td>
-            <td class="col-7 col-md-8">
+            <td class="col-10 col-sm-7 col-md-8">
               <div class="row">
                 <div class="col-3 col-md-2 d-flex justify-content-center align-items-center">
                   <div class="icon-wrapper">
@@ -48,12 +48,13 @@
                 </div>
               </div>
             </td>
-            <td class="col-4 col-md-3 bg-white d-flex align-items-center">
+            <td class="col-1 d-sm-none bg-white"></td>
+            <td class="col-12 col-sm-4 col-md-3 bg-white d-flex align-items-center pb-3">
               <div class="row w-100">
-                <div class="button-wrapper col-6 d-flex justify-content-center align-items-center">
+                <div class="button-wrapper offset-8 offset-sm-0 col-2 col-sm-6 d-flex justify-content-center align-items-center">
                   <a href="/records/{{this._id}}/edit">修改</a>
                 </div>
-                <div class="button-wrapper col-6 d-flex justify-content-center align-items-center">
+                <div class="button-wrapper col-2 col-sm-6 d-flex justify-content-center align-items-center">
                   <a data-toggle="modal" data-target="#deletModal_{{this._id}}">刪除</a>
                 </div>
               </div>
