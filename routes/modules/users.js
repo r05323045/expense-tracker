@@ -9,10 +9,13 @@ const router = express.Router()
 router.get('/login', (req, res) => {
   res.render('login')
 })
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}))
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+    faliureFlash: req.flash('warning_msg', '帳號或密碼錯誤')
+  })(req, res, next)
+})
 router.get('/register', (req, res) => {
   res.render('register')
 })
