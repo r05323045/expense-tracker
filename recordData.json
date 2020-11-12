@@ -1,22 +1,102 @@
 {
   "results": [
     {
-      "name": "捷運",
-      "date": "2019-04-23",
-      "category": "交通出行",
-      "amount": 120
+      "name": "滷肉飯",
+      "date": "2020-03-01",
+      "category": "餐飲食品",
+      "merchant": "路邊攤",
+      "amount": 50
+    },
+    {
+      "name": "聖誕禮物",
+      "date": "2020-12-19",
+      "category": "家居物業",
+      "merchant": "新光三越",
+      "amount": 6799
     },
     {
       "name": "電影",
-      "date": "2020-09-10",
+      "date": "2020-02-10",
       "category": "休閒娛樂",
+      "merchant": "華納威秀",
       "amount": 300
     },
     {
-      "name": "滷肉飯",
-      "date": "2020-08-01",
+      "name": "計程車",
+      "date": "2020-10-24",
+      "category": "交通出行",
+      "merchant": "Uber",
+      "amount": 274
+    },
+    {
+      "name": "房租",
+      "date": "2020-04-05",
+      "category": "家居物業",
+      "merchant": "房東",
+      "amount": 20000
+    },
+    {
+      "name": "Spotify月費",
+      "date": "2020-07-17",
+      "category": "休閒娛樂",
+      "merchant": "Netflix",
+      "amount": 90
+    },
+    {
+      "name": "水電費",
+      "date": "2020-05-15",
+      "category": "家居物業",
+      "merchant": "台電",
+      "amount": 1450
+    },
+    {
+      "name": "聚餐",
+      "date": "2020-06-29",
       "category": "餐飲食品",
-      "amount": 50
+      "merchant": "小吃店",
+      "amount": 2999
+    },
+    {
+      "name": "Netflix月費",
+      "date": "2020-07-02",
+      "category": "休閒娛樂",
+      "merchant": "Netflix",
+      "amount": 363
+    },
+    {
+      "name": "朋友婚禮",
+      "date": "2020-06-20",
+      "category": "餐飲食品",
+      "merchant": "飯店",
+      "amount": 3600
+    },
+    {
+      "name": "雙11購物",
+      "date": "2020-11-11",
+      "category": "休閒娛樂",
+      "merchant": "蝦皮",
+      "amount": 4986
+    },
+    {
+      "name": "捷運",
+      "date": "2020-01-23",
+      "category": "交通出行",
+      "merchant": "台北捷運",
+      "amount": 35
+    },
+    {
+      "name": "出遊",
+      "date": "2020-06-04",
+      "category": "休閒娛樂",
+      "merchant": "飯店",
+      "amount": 12000
+    },
+    {
+      "name": "口罩",
+      "date": "2020-08-13",
+      "category": "其他",
+      "merchant": "藥局",
+      "amount": 359
     }
   ]
 }

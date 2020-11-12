@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 const recordSchema = new Schema({
   name: {
     type: String,
-    trim: true,
     required: true
   },
   date: {
@@ -16,6 +15,10 @@ const recordSchema = new Schema({
   amount: {
     type: Number,
     trim: true,
+    required: true
+  },
+  merchant: {
+    type: String,
     required: true
   },
   userId: {

@@ -7,7 +7,7 @@
           <form action="/query" class="row w-100 form-group">
             <div class="col-6">
               <select class="form-control" name="category" onchange="this.form.submit()" required="required">
-                <option value="">類別</option>
+                <option value="">所有類別</option>
                 {{#each categories}}
                   <option value="{{this.name}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
                 {{/each}}
@@ -15,7 +15,7 @@
             </div>
             <div class="col-6">
               <select class="form-control" name="month" onchange="this.form.submit()">
-              <option value="">月份</option>
+              <option value="">所有月份</option>
               {{#each allMonth}}
                 <option value="{{this.name}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
               {{/each}}
