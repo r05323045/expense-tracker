@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
     .lean()
     .sort({ date: -1 })
     .then(records => {
+      const allMonth = Array.from({ length: 12 }, (_, i) => { return { name: i + 1, selected: false } })
       const totalAmount = records.reduce((acc, cur) => acc + cur.amount, 0)
       records.forEach(el => {
         switch (el.category) {
@@ -37,18 +38,36 @@ router.get('/', (req, res) => {
           categories.forEach(category => {
             category.selected = false
           })
-          res.render('index', { records, totalAmount, categories })
+          res.render('index', { records, totalAmount, categories, allMonth })
         })
     })
     .catch(error => console.error(error))
 })
-router.get('/category', (req, res) => {
-  const selectCategory = req.query.selectCategory
+router.get('/query', (req, res) => {
+  const selectCategory = req.query.category
+  const selectMonth = req.query.month
   const userId = req.user._id
-  if (selectCategory === '類別') {
-    return res.redirect('/')
+  const allMonth = Array.from({ length: 12 }, (_, i) => { return { name: i + 1, selected: false } })
+  allMonth.forEach(month => {
+    if (month.name === Number(selectMonth)) {
+      month.selected = true
+    }
+  })
+  let conditions
+  if (!selectMonth && !selectCategory) {
+    conditions = { userId }
+  } else if (selectMonth && !selectCategory) {
+    const startDate = new Date(new Date().getFullYear(), Number(selectMonth) - 1, 1, 8, 0, 0, 0)
+    const endDate = new Date(new Date().getFullYear(), Number(selectMonth), 0, 8, 0, 0, 0)
+    conditions = { date: { $gte: startDate, $lte: endDate }, userId }
+  } else if (!selectMonth && selectCategory) {
+    conditions = { category: selectCategory, userId }
+  } else {
+    const startDate = new Date(new Date().getFullYear(), Number(selectMonth) - 1, 1, 8, 0, 0, 0)
+    const endDate = new Date(new Date().getFullYear(), Number(selectMonth), 0, 8, 0, 0, 0)
+    conditions = { category: selectCategory, userId, date: { $gte: startDate, $lte: endDate } }
   }
-  return Record.find({ category: selectCategory, userId })
+  return Record.find(conditions)
     .lean()
     .sort({ date: -1 })
     .then(records => {
@@ -84,7 +103,7 @@ router.get('/category', (req, res) => {
               category.selected = false
             }
           })
-          res.render('index', { records, totalAmount, categories })
+          res.render('index', { records, totalAmount, categories, allMonth })
         })
     })
     .catch(error => console.log(error))
