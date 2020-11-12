@@ -12,7 +12,7 @@
 
         <div class="form-group mb-3 mb-md-5">
           <label for="form-date">日期</label>
-          <input class="w-100 form-control" type="date" id="form-date" name="date" required="required">
+          <input class="w-100 form-control" type="date" id="form-date" name="date" min="{{firstDay}}" max="{{lastDay}}" required="required">
         </div>
 
         <div class="form-group mb-3 mb-md-5">
@@ -30,10 +30,18 @@
           <input class="w-100 form-control" placeholder="請輸入金額" type="number" name="amount" id="form-amount" required="required">
         </div>
 
+        <div class="row mb-3">
+          <div class="offset-1 col-10">
+            <div class="text-center mt-5 mx-auto">
+              <button type="submit" class="w-100 btn btn-warning create" href="/records/new">新增支出</button>
+            </div>
+          </div>
+        </div>
         <div class="row mb-5">
-        <div class="offset-1 col-10">
-          <div class="text-center mt-5 mx-auto">
-            <button type="submit" class="w-100 btn btn-warning create" href="/records/new">新增支出</button>
+          <div class="offset-1 col-10">
+            <div class="text-center mx-auto">
+              <a href="/" class="w-100 btn btn-dark">返回</a>
+            </div>
           </div>
         </div>
 

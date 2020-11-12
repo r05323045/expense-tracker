@@ -4,10 +4,13 @@ const Record = require('../../models/recordModel')
 const Category = require('../../models/categoryModel')
 
 router.get('/new', (req, res) => {
+  const thisYear = new Date().getFullYear()
+  const firstDay = `${thisYear}-01-01`
+  const lastDay = `${thisYear}-12-31`
   Category.find()
     .lean()
     .sort({ _id: 1 })
-    .then(categories => res.render('new', { categories }))
+    .then(categories => res.render('new', { categories, firstDay, lastDay }))
 })
 
 router.get('/:id/edit', (req, res) => {
@@ -20,6 +23,8 @@ router.get('/:id/edit', (req, res) => {
       const month = String(record.date.getMonth() + 1).padStart(2, '0')
       const year = String(record.date.getFullYear())
       const dateString = `${year}-${month}-${date}`
+      const firstDay = `${year}-01-01`
+      const lastDay = `${year}-12-31`
       Category.find()
         .lean()
         .sort({ _id: 1 })
@@ -31,7 +36,7 @@ router.get('/:id/edit', (req, res) => {
               category.selected = false
             }
           })
-          res.render('edit', { record, dateString, categories })
+          res.render('edit', { record, dateString, categories, firstDay, lastDay })
         })
     })
     .catch(error => console.log(error))
